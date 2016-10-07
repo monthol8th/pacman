@@ -9,8 +9,9 @@ public class World {
     World(Pacman pacmanGame) {
         this.pacmanGame = pacmanGame;
  
-        pacman = new Pac(60,60);
         maze = new Maze();
+        pacman = new Pac(60,60,maze);
+
 
     }
  

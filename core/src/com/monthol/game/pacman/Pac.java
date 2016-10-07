@@ -12,6 +12,7 @@ public class Pac {
     public static final int DIRECTION_STILL = 0;
     private int currentDirection;
     private int nextDirection;
+    private Maze maze;
 
     
     public static final int SPEED = 5;
@@ -24,12 +25,13 @@ public class Pac {
         {-1,0}
     };
     
-    public Pac(int x, int y) {
+    public Pac(int x, int y,Maze maze) {
         position = new Vector2(x,y);
         
         currentDirection = DIRECTION_STILL;
         nextDirection = DIRECTION_STILL;
 
+        this.maze = maze;
     }    
  
     public void setNextDirection(int dir) {
@@ -45,7 +47,11 @@ public class Pac {
 
     public void update() {
         if(isAtCenter()) {
-            currentDirection = nextDirection;
+            if(canMoveInDirection(nextDirection)) {
+                currentDirection = nextDirection;    
+            } else {
+                currentDirection = DIRECTION_STILL;    
+            }
         }
         position.x += SPEED * DIR_OFFSETS[currentDirection][0];
         position.y += SPEED * DIR_OFFSETS[currentDirection][1];
@@ -60,5 +66,19 @@ public class Pac {
     	position.y += SPEED * DIR_OFFSETS[dir][1];
         
         System.out.println(position.x+" "+position.y);
+    }
+    private boolean canMoveInDirection(int dir) {
+        int newRol=+getRow()+DIR_OFFSETS[nextDirection][1];
+        int newCol=+getColumn()+DIR_OFFSETS[nextDirection][0];
+        
+    	return !maze.hasWallAt(newRol, newCol);   // ยอมหมดไปก่อน เดี๋ยวเราจะทยอยเขียน
+    }
+    
+    private int getRow() {
+        return ((int)position.y) / WorldRenderer.BLOCK_SIZE; 
+    }
+ 
+    private int getColumn() {
+        return ((int)position.x) / WorldRenderer.BLOCK_SIZE; 
     }
 }
