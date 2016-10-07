@@ -7,6 +7,8 @@ import com.monthol.game.pacman.Pacman;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+	    config.width = Pacman.WIDTH;
+	    config.height = Pacman.HEIGHT;
 		new LwjglApplication(new Pacman(), config);
 	}
 }

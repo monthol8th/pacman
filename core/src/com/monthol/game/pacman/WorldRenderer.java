@@ -9,6 +9,7 @@ public class WorldRenderer {
 	World world;
 	Texture pacmanImg;
 	SpriteBatch batch;
+    private MazeRenderer mazeRenderer;
 
     public WorldRenderer(Pacman pacmanGame, World world) {
         this.pacmanGame = pacmanGame;
@@ -17,8 +18,12 @@ public class WorldRenderer {
         this.world = world;
  
         pacmanImg = new Texture("pacman.png");
+        mazeRenderer = new MazeRenderer(pacmanGame.batch, world.getMaze());
+
     }
     public void render(float delta) {
+        mazeRenderer.render();
+
         SpriteBatch batch = pacmanGame.batch;
         batch.begin();
         Vector2 pos = world.getPacman().getPosition();
