@@ -47,6 +47,10 @@ public class Pac {
 
     public void update() {
         if(isAtCenter()) {
+        	if(maze.hasDotAt(getRow(), getColumn()))
+        	{
+        		maze.removeDotAt(getRow(), getColumn());
+        	}
             if(canMoveInDirection(nextDirection)) {
                 currentDirection = nextDirection;    
             } else {
