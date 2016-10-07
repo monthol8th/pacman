@@ -18,6 +18,7 @@ public class Maze {
     };
     private int height;
     private int width;
+    private ScoreListener scoreListener;
     
     private boolean [][] hasDots;
 
@@ -27,6 +28,13 @@ public class Maze {
         width = MAP[0].length();
         initDotData();
 
+    }
+    public Maze(ScoreListener scoreListener)
+    {
+    	this.scoreListener=scoreListener;
+        height = MAP.length;
+        width = MAP[0].length();
+        initDotData();
     }
  
     public int getHeight() {
@@ -55,6 +63,7 @@ public class Maze {
     
     public void removeDotAt(int r, int c) {
         hasDots[r][c] = false;
+        scoreListener.update();
     }
 
 

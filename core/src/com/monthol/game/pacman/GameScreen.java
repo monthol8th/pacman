@@ -16,6 +16,8 @@ public class GameScreen extends ScreenAdapter {
     private int y;
     private Pac pacman;
     private WorldRenderer worldRenderer;
+    private ScoreListener scoreListener;
+
     
     public World world;
 
@@ -24,10 +26,10 @@ public class GameScreen extends ScreenAdapter {
         this.pacmanGame = pacmanGame;
  
         pacmanImg = new Texture("pacman.png");
- 
-        world = new World(pacmanGame);
+        scoreListener=new ScoreListener();
+        world = new World(pacmanGame,scoreListener);
         
-        worldRenderer= new WorldRenderer(this.pacmanGame, this.world);
+        worldRenderer= new WorldRenderer(this.pacmanGame, this.world,this.scoreListener);
     }
     
     @Override

@@ -4,12 +4,12 @@ public class World {
     private Pac pacman;
     private Pacman pacmanGame;
     private Maze maze;
-
-    
-    World(Pacman pacmanGame) {
+    private ScoreListener scoreListener;
+    World(Pacman pacmanGame,ScoreListener scoreListener) {
         this.pacmanGame = pacmanGame;
  
-        maze = new Maze();
+        this.scoreListener = scoreListener;
+        maze = new Maze(scoreListener);
         pacman = new Pac(60,60,maze);
 
 
