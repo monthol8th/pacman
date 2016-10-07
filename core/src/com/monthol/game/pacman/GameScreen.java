@@ -41,21 +41,25 @@ public class GameScreen extends ScreenAdapter {
         worldRenderer.render(delta);
     }
     private void update(float delta) {
-        if(Gdx.input.isKeyPressed(Keys.LEFT)) {
-        	world.getPacman().setNextDirection(Pac.DIRECTION_LEFT);
-        }
-        if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
-        	world.getPacman().setNextDirection(Pac.DIRECTION_RIGHT);
-        }
-        if(Gdx.input.isKeyPressed(Keys.UP)) {
-        	world.getPacman().setNextDirection(Pac.DIRECTION_UP);
-        }
-        if(Gdx.input.isKeyPressed(Keys.DOWN)) {
-        	world.getPacman().setNextDirection(Pac.DIRECTION_DOWN);  
-        }
-        if(!(Gdx.input.isKeyPressed(Keys.DOWN)||Gdx.input.isKeyPressed(Keys.UP)||Gdx.input.isKeyPressed(Keys.RIGHT)||Gdx.input.isKeyPressed(Keys.LEFT)))
-        	world.getPacman().setNextDirection(Pac.DIRECTION_STILL);  
+       updatePacmanDirection();
         world.update(delta);
     }
 
+    
+    private void updatePacmanDirection() {
+    	 if(Gdx.input.isKeyPressed(Keys.LEFT)) {
+         	world.getPacman().setNextDirection(Pac.DIRECTION_LEFT);
+         }
+         if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
+         	world.getPacman().setNextDirection(Pac.DIRECTION_RIGHT);
+         }
+         if(Gdx.input.isKeyPressed(Keys.UP)) {
+         	world.getPacman().setNextDirection(Pac.DIRECTION_UP);
+         }
+         if(Gdx.input.isKeyPressed(Keys.DOWN)) {
+         	world.getPacman().setNextDirection(Pac.DIRECTION_DOWN);  
+         }
+         if(!(Gdx.input.isKeyPressed(Keys.DOWN)||Gdx.input.isKeyPressed(Keys.UP)||Gdx.input.isKeyPressed(Keys.RIGHT)||Gdx.input.isKeyPressed(Keys.LEFT)))
+         	world.getPacman().setNextDirection(Pac.DIRECTION_STILL);  
+    }
 }
