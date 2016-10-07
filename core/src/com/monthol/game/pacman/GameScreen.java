@@ -6,6 +6,7 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 
 public class GameScreen extends ScreenAdapter {
  
@@ -13,13 +14,15 @@ public class GameScreen extends ScreenAdapter {
     private Texture pacmanImg;
     private int x;
     private int y;
+    private Pac pacman;
+
 
     public GameScreen(Pacman pacmanGame) {
         this.pacmanGame = pacmanGame;
+ 
         pacmanImg = new Texture("pacman.png");
-        x = 100;
-        y = 100;
-
+ 
+        pacman = new Pac(100,100);
     }
     
     @Override
@@ -28,23 +31,23 @@ public class GameScreen extends ScreenAdapter {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         SpriteBatch batch = pacmanGame.batch;
         batch.begin();
-        batch.draw(pacmanImg, x, y);
         update(delta);
+        Vector2 pos = pacman.getPosition();
+        batch.draw(pacmanImg, pos.x, pos.y);
         batch.end();
     }
     private void update(float delta) {
         if(Gdx.input.isKeyPressed(Keys.LEFT)) {
-            x -= 10;
+        	pacman.move(Pac.DIRECTION_LEFT);
         }
         if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
-            x += 10;
+        	pacman.move(Pac.DIRECTION_RIGHT);
         }
         if(Gdx.input.isKeyPressed(Keys.UP)) {
-            y -= 10;
+        	pacman.move(Pac.DIRECTION_UP);
         }
         if(Gdx.input.isKeyPressed(Keys.DOWN)) {
-            y += 10;
-        }
+        	pacman.move(Pac.DIRECTION_DOWN);        }
     }
 
 }
