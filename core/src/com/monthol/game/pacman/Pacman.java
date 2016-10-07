@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class Pacman extends ApplicationAdapter {
+public class Pacman extends Game {
 	SpriteBatch batch;
 
     
@@ -25,4 +25,5 @@ public class Pacman extends ApplicationAdapter {
     public void dispose () {
         batch.dispose();
     }
+
 }
