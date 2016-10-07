@@ -31,7 +31,7 @@ public class Pac {
     
     public void move(int dir) { 
     	position.x += SPEED * DIR_OFFSETS[dir][0];
-    	position.y -= SPEED * DIR_OFFSETS[dir][1];
+    	position.y += SPEED * DIR_OFFSETS[dir][1];
         
         System.out.println(position.x+" "+position.y);
     }
